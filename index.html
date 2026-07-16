@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meli</title>
+    
+    <!-- 1. Importamos la librería de Google -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+    <!-- 2. Agregamos los estilos para que ocupe TODA la pantalla y los botones se vean bien -->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f3f3f3;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Diseñamos el botón de realidad aumentada */
+        #ar-button {
+            background-image: url(https://modelviewer.dev/assets/ic_view_in_ar_new_to_color_36dp.png);
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: 12px 50%;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            bottom: 16px;
+            padding: 0px 16px 0px 40px;
+            font-family: Roboto Regular, Helvetica Neue, sans-serif;
+            font-size: 14px;
+            color: #4285f4;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 18px;
+            border: 1px solid #DADCE0;
+            cursor: pointer;
+        }
+
+        /* Estilos para el icono de la mano guía en AR */
+        #ar-prompt {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+
+        #ar-prompt img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3. El visor 3D ahora sí va dentro de <body> y a pantalla completa -->
+    <model-viewer 
+        src="MOISES6.glb" 
+        ios-src="MOISES6.usdz"
+        autoplay 
+        animation-name="*"
+        ar 
+        ar-modes="webxr scene-viewer quick-look" 
+        camera-controls 
+        touch-action="pan-y">
+        
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        
+        <button slot="ar-button" id="ar-button">
+            Ver en tu espacio
+        </button>
+        
+        <div id="ar-prompt">
+            <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+        </div>
+    </model-viewer>
+
+</body>
+</html>
